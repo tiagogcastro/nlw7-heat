@@ -27,8 +27,8 @@ export class AuthenticateUserService {
         'Accept': 'application/json',
       },
     });
-
-    const response = await axios.get<IUserResponse>('https://api.github.com/user', {
+    
+    const response = await axios.get<IUserResponse>(process.env.GITHUB_USER_API_URL, {
       headers: {
         authorization: `Bearer ${axiosSigninResponse.data.access_token}`
       }
