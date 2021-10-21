@@ -1,10 +1,20 @@
 import './styles/global.css';
 
-export function App() {
+import { useAuth } from './hooks/useAuth';
 
+import { MessageList } from './components/MessageList';
+import { LoginBox } from './components/LoginBox';
+import { SendMessageForm } from './components/SendMessageForm';
+
+import styles from './App.module.scss';
+
+export function App() {
+  const { user } = useAuth()
   return (
-    <div>
-      <h1>Hello world</h1>
-    </div>
+    <main 
+      className={`${styles.contentWrapper} ${!!user && styles.contentSigned}`}>
+      <MessageList />
+      {!!user ? <SendMessageForm /> : <LoginBox />}
+    </main>
   )
 }
